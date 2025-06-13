@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>&lt;model-viewer&gt; template</title>
+    <meta charset="utf-8">
+    <meta name="description" content="&lt;model-viewer&gt; template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" href="./styles.css" rel="stylesheet"/>
+  </head>
+
+<style>
+  body {
+    background-color: #121212; /* Optional: for better contrast */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+    justify-content: center;
+  }
+
+  button {
+    background: linear-gradient(145deg, #1f1f1f, #2e2e2e);
+    color: #00ffe5;
+    border: 1px solid #00ffe5;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px rgba(0, 255, 229, 0.4);
+  }
+
+  button:hover {
+    background: #00ffe5;
+    color: #121212;
+    box-shadow: 0 0 16px rgba(0, 255, 229, 0.8), 0 0 32px rgba(0, 255, 229, 0.6);
+    transform: translateY(-2px);
+  }
+
+  button:active {
+    transform: scale(0.97);
+    box-shadow: 0 0 10px rgba(0, 255, 229, 0.6);
+  }
+</style>
+
+  <body>
+    <!-- <model-viewer> HTML element -->
+    <model-viewer id="Penguin" src="DVEAmodel.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.png" shadow-intensity="1" animation-name="waveAction" camera-orbit="31.07deg 85.34deg 1.136m" field-of-view="30deg">
+      <button class="Hotspot" slot="hotspot-2" data-surface="6 0 1631 1610 45 0.495 0.179 0.326" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Penguin</div>
+      </button><button class="Hotspot" slot="hotspot-4" data-surface="16 0 6024 6015 6023 0.674 0.243 0.082" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Ribbon</div>
+      </button><button class="Hotspot" slot="hotspot-5" data-surface="3 0 3 4 5 0.313 0.184 0.504" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Box of candies</div>
+      </button><button class="Hotspot" slot="hotspot-6" data-surface="4 0 27 28 29 0.825 0.060 0.114" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Scanner</div>
+      </button><button class="Hotspot" slot="hotspot-7" data-surface="1 0 30 31 32 0.940 0.057 0.003" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Screen</div>
+      </button>
+      <div class="progress-bar hide" slot="progress-bar">
+          <div class="update-bar"></div>
+      </div>
+      <button slot="ar-button" id="ar-button">
+          View in your space
+      </button>
+      <div id="ar-prompt">
+          <img src="ar_hand_prompt.png">
+      </div>
+
+<div class="button-group">
+      <button onClick="setOrbit('2.9deg 89.91deg 1.134m')">Front View</button>
+      <button onClick="setOrbit('0.4163deg 0.0000573deg 1.079m')">Top View</button>
+      <button onClick="setOrbit('92.8deg 90.52deg 0.8812m')">Right View</button>
+
+      <button onClick="VBtn01()">Material 1</button>
+      <button onClick="VBtn02()">Material 2</button>
+
+      <button onClick="Btn01()">Play wave animation</button>
+      <button onClick="Btn02()">Play rotate animation</button>
+      <button onClick="Btn03()">Play explode animation</button>
+
+      <button onClick="pauseAnimation()">Pause Animation</button>
+     </div>
+
+    </model-viewer>  
+
+    <script>
+
+         function setOrbit(orbit) {
+      document.getElementById("Penguin").cameraOrbit=orbit;
+     }
+     function VBtn01(){
+      document.getElementById("Penguin").variantName='V1';
+     }
+     function VBtn02(){
+      document.getElementById("Penguin").variantName='V2';
+     }
+     function Btn01(){
+      document.getElementById("Penguin").pause();
+      document.getElementById("Penguin").animationName='waveAction';
+      document.getElementById("Penguin").play();
+     }
+     function Btn02(){
+      document.getElementById("Penguin").pause();
+      document.getElementById("Penguin").animationName='allaction1';
+      document.getElementById("Penguin").play();
+     }
+     function Btn03(){
+      document.getElementById("Penguin").pause();
+      document.getElementById("Penguin").animationName='explodeaction';
+      document.getElementById("Penguin").play();
+     }
+     function pauseAnimation(){
+      document.getElementById("Penguin").pause()
+     }
+
+    </script>
+    <script src="script.js"></script>
+    <!-- Loads <model-viewer> for browsers: -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  </body>
+</html>
